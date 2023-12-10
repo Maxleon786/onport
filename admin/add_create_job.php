@@ -3,9 +3,6 @@
 <?php 
     if($_SESSION['admin_email']){
 
-        $query="select * from admin_login";
-        $result=mysqli_query($connection,$query);
-        $raw=mysqli_num_rows($result);
     }
     else{
     header("location:admin_login.php");
@@ -15,45 +12,49 @@
         <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="admin_dashboard.php">Dashboard</a></li>
-    <li class="breadcrumb-item"><a href="customers.php">Customers</a></li>
-    <li class="breadcrumb-item"><a href="add_customers.php">Add Customers</a></li>
+    <li class="breadcrumb-item"><a href="create_company.php">All Job List</a></li>
+    <li class="breadcrumb-item"><a href="add_company.php">Add Job</a></li>
   </ol>
 </nav>
           <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-          <h1 class="h2">Add Customers</h1>
+          <h1 class="h2">Add Job</h1>
           <!-- messages display -->
           </div>
           <!-- form add customers -->
           <div  style="width: 50%;margin-left:25%;box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;background-color:#FBFCFC;">
           <form action="" method="POST" style="margin:3%;padding:3%;" name="customer_form">
   <div class="form-group">
-    <label for="email">Email address:</label>
-    <input type="email" class="form-control" id="email" name="ctemail">
+    <label for="email">Job Title:</label>
+    <input type="text" class="form-control" id="title" name="job_title">
   </div>
   <div class="form-group">
-    <label for="pwd">Password:</label>
-    <input type="password" class="form-control" id="pwd" name="password">
-  </div>
-  <div class="form-group">
-    <label for="pwd">First Name:</label>
-    <input type="text" class="form-control" id="pwd" name="fname">
-  </div>
-  <div class="form-group">
-    <label for="pwd">Last Name</label>
-    <input type="text" class="form-control" id="pwd" name="lname">
-  </div>
-  <div class="form-group">
-    <label for="pwd">Admin_type</label>
-    <select name="admin_type" id=""  class="form-control">
-        <option value="1">super_admin</option>
-        <option value="2">Customer_admin</option>
+      <label for="my-textarea">Text</label>
+      <textarea id="my-textarea" class="form-control" name="description" rows="10"></textarea>
+    </div>
+    
+    <!-- conutry state city dn link -->
+    <!--  -->
+    <div class="form-group">
+    <label for="my-textarea">Country</label>
+    <select name="country" class="countries form-control" id="countryId" name="country">
+    <option value="1">Select Country</option>
     </select>
-  </div>
-  
-  <button type="submit" class="btn btn-block btn-default" name="submit">Submit</button>
+    </div>
+    <div class="form-group">
+    <label for="my-textarea">State</label>
+    <select name="state" class="states form-control" id="stateId"  name="state">
+    <option value="1">Select State</option>
+    </select>
+    </div>
+    <div class="form-group">
+    <label for="my-textarea">City</label>
+    <select name="city" class="cities form-control" id="cityId" " name="city">
+    <option value="1">Select City</option>
+    </select>
+    </div>
+    
+    <button type="submit" class="btn btn-block btn-default" name="submit">Submit</button>
 </form>
-          </div>
-
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
@@ -72,15 +73,17 @@
     <!-- add admin details-->
     <?php 
         if(isset($_POST["submit"])){
-            $email=$_POST["ctemail"];
-            $password=$_POST["password"];
-            $fname=$_POST["fname"];
-            $lname=$_POST["lname"];
-            $admin_type=$_POST["admin_type"];
-            $query="insert into admin_login values(id,'$email','$password','$fname','$lname','$admin_type')";
+            $login_email=$_SESSION['admin_email'];
+            $job_title=$_POST["job_title"];
+            $description=$_POST["description"];
+            $country=$_POST["country"];
+            $state=$_POST["state"];
+            $city=$_POST["city"];
+            ;
+            $query="insert into all_job values(job_id,'$login_email','$job_title','$description','$country','$state','$city')";
             $result=mysqli_query($connection,$query);
             if($result){
-               
+               echo "submitted succesfully";
             }
             else 
             {
