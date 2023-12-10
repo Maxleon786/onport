@@ -23,7 +23,8 @@
 </nav>
           <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
           <h1 class="h2">Add Customers</h1>
-          <h6 class="h2"><?php echo $_SESSION['msg'];?></h6>
+          <!-- messages display -->
+          
           </div>
           <!-- form add customers -->
           <div  style="width: 50%;margin-left:25%;box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;background-color:#FBFCFC;">
@@ -81,7 +82,7 @@
             $query="insert into admin_login values(id,'$email','$password','$fname','$lname','$admin_type')";
             $result=mysqli_query($connection,$query);
             if($result){
-                $_SESSION['msg']="submited successfully";
+               
             }
             else 
             {
