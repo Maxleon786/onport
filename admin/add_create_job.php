@@ -1,6 +1,7 @@
 <?php include("header.php")?>
 <?php include("include\sidebar.php");?> 
 <?php 
+$query = mysqli_query($connection,"select * from job_category");
     if($_SESSION['admin_email']){
 
     }
@@ -31,6 +32,11 @@
       <label for="my-textarea">Text</label>
       <textarea id="my-textarea" class="form-control" name="description" rows="10"></textarea>
     </div>
+    <div class="form-group">
+      <label for="my-textarea">Enter Keyword</label>
+    <input type="text" class="form-control" id="keyword" name="keyword" placeholder="Enter Keyword">
+      
+    </div>
     
     <!-- conutry state city dn link -->
     <!--  -->
@@ -48,10 +54,23 @@
     </div>
     <div class="form-group">
     <label for="my-textarea">City</label>
-    <select name="city" class="cities form-control" id="cityId" " name="city">
+    <select name="city" class="cities form-control" id="cityId"  name="city">
     <option value="1">Select City</option>
     </select>
     </div>
+    <div class="form-group">
+    <label for="">Select Category</label>
+    <select name="category" class="form-control" id="category">
+    <?php
+    while($row=mysqli_fetch_array($query)){
+
+    
+     ?>
+     <option value="<?php echo $row['id']; ?>"><?php echo $row['category'];?></option>
+     <?php
+     } ?>
+    </select>
+    </div>  
     
     <button type="submit" class="btn btn-block btn-default" name="submit">Submit</button>
 </form>
@@ -79,8 +98,10 @@
             $country=$_POST["country"];
             $state=$_POST["state"];
             $city=$_POST["city"];
+            $category=$_POST["category"];
+            $keyword=$_POST["keyword"];
             ;
-            $query="insert into all_job values(job_id,'$login_email','$job_title','$description','$country','$state','$city')";
+            $query="insert into all_job values(job_id,'$login_email','$job_title','$description','$country','$state','$city','$keyword','$category')";
             $result=mysqli_query($connection,$query);
             if($result){
                echo "submitted succesfully";

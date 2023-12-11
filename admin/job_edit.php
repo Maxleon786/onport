@@ -56,6 +56,15 @@
     <option value="<?php echo $data['city'];?>">Select City</option>
     </select>
     </div>
+
+    <div class="form-group">
+    <label for="keyword">Keyword:</label>
+    <input type="text" class="form-control" id="keyword" name="keyword" value="<?php echo $data['keyword'];?>">
+  </div>
+  <div class="form-group">
+    <label for="category">Category:</label>
+    <input type="text" class="form-control" id="category" name="category" value="<?php echo $data['category'];?>">
+  </div>
     
     <button type="submit" class="btn btn-block btn-default" name="submit">Submit</button>
 </form>
@@ -83,8 +92,10 @@
             $country=$_POST["country"];
             $state=$_POST["state"];
             $city=$_POST["city"];
-            ;
-            $query="insert into all_job values(job_id,'$login_email','$job_title','$description','$country','$state','$city')";
+            $keyword=$_POST["keyword"];
+            $category=$_POST["category"];
+            
+            $query="insert into all_job values(job_id,'$login_email','$job_title','$description','$country','$state','$city','$keyword','$category')";
             $result=mysqli_query($connection,$query);
             if($result){
                echo "submitted succesfully";

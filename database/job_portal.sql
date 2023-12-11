@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 10, 2023 at 02:37 PM
+-- Generation Time: Dec 11, 2023 at 01:19 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -76,19 +76,22 @@ CREATE TABLE `all_job` (
   `description` text NOT NULL,
   `contri` varchar(100) NOT NULL,
   `state` varchar(100) NOT NULL,
-  `city` varchar(100) NOT NULL
+  `city` varchar(100) NOT NULL,
+  `keyword` varchar(111) NOT NULL,
+  `category` varchar(111) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `all_job`
 --
 
-INSERT INTO `all_job` (`job_id`, `customer_email`, `job_title`, `description`, `contri`, `state`, `city`) VALUES
-(1, 'ramesh@gmail.com ', 'web developer ', 'this is a job', 'india', 'Gujarat ', 'surat'),
-(2, 'raj12@gmail.com', 'web developer', 'this is job', 'india', 'gujarat', 'surat'),
-(3, 'ram12@gmail.com', 'web developer', 'dsd', '1', '1', '1'),
-(4, 'ram12@gmail.com', 'web developer', 'dsd', '1', '1', '1'),
-(5, 'raj12@gmail.com', 'web developer', 'hhs', '1', '1', '1');
+INSERT INTO `all_job` (`job_id`, `customer_email`, `job_title`, `description`, `contri`, `state`, `city`, `keyword`, `category`) VALUES
+(1, 'ramesh@gmail.com ', 'web developer ', 'this is a job', 'india', 'Gujarat ', 'surat', '', ''),
+(2, 'raj12@gmail.com', 'web developer', 'this is job', 'india', 'gujarat', 'surat', '', ''),
+(3, 'ram12@gmail.com', 'web developer', 'dsd', '1', '1', '1', '', ''),
+(4, 'ram12@gmail.com', 'web developer', 'dsd', '1', '1', '1', '', ''),
+(5, 'raj12@gmail.com', 'web developer', 'hhs', '1', '1', '1', '', ''),
+(9, 'ram12@gmail.com', 'php', 'for backend', '1', '1', '1', 'fresher', '3');
 
 -- --------------------------------------------------------
 
@@ -132,6 +135,26 @@ CREATE TABLE `jobskeer` (
 INSERT INTO `jobskeer` (`id`, `email`, `password`, `first_name`, `last_name`, `dob`, `mobile_number`) VALUES
 (1, 'test123@gmail.com', 'test123', 'test', 'test1', '2023-12-05', 1234567890);
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `job_category`
+--
+
+CREATE TABLE `job_category` (
+  `id` int(111) NOT NULL,
+  `category` varchar(111) NOT NULL,
+  `des` varchar(111) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `job_category`
+--
+
+INSERT INTO `job_category` (`id`, `category`, `des`) VALUES
+(2, 'poilitices', 'this is poli description'),
+(3, 'cate 2', 'this is cate 2 description');
+
 --
 -- Indexes for dumped tables
 --
@@ -161,6 +184,12 @@ ALTER TABLE `jobskeer`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `job_category`
+--
+ALTER TABLE `job_category`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -174,7 +203,7 @@ ALTER TABLE `admin_login`
 -- AUTO_INCREMENT for table `all_job`
 --
 ALTER TABLE `all_job`
-  MODIFY `job_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `job_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `company`
@@ -187,6 +216,12 @@ ALTER TABLE `company`
 --
 ALTER TABLE `jobskeer`
   MODIFY `id` int(111) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `job_category`
+--
+ALTER TABLE `job_category`
+  MODIFY `id` int(111) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

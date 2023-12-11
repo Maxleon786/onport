@@ -66,9 +66,9 @@ if($raw>0){
             </h6>
             <ul class="nav flex-column mb-2">
               <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="category.php">
                   <span data-feather="file-text"></span>
-                  Current month
+                  Category
                 </a>
               </li>
               <li class="nav-item">
