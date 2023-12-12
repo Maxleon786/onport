@@ -2,10 +2,11 @@
 <?php include("include\sidebar.php");?> 
 <?php 
     if($_SESSION['admin_email']){
-
-        $query="select * from admin_login";
-        $result=mysqli_query($connection,$query);
-        $raw=mysqli_num_rows($result);
+      $query="select * from admin_login where admin_type='2'";
+           $result=mysqli_query($connection,$query);
+           $raw=mysqli_num_rows($result);
+          //  $data=mysqli_fetch_assoc($result);
+          //  print_r($data);
     }
     else{
     header("location:admin_login.php");
@@ -34,7 +35,18 @@
       <label for="my-textarea">Text</label>
       <textarea id="my-textarea" class="form-control" name="description" rows="10"></textarea>
     </div>
-  
+    <!-- company admin email fetch -->
+    <div class="form-group">
+    <label for="pwd">Select Company Admin</label>
+    <select name="admin_type" id=""  class="form-control">
+      <?php 
+           
+           if($raw>0)
+           { while($data=mysqli_fetch_assoc($result)){?>
+                 <option value="<?php   echo $data['admin_email'];?>"><?php   echo $data['admin_email'];?></option>
+     <?php } } ?>
+    </select>
+  </div>
   <button type="submit" class="btn btn-block btn-default" name="submit">Submit</button>
 </form>
           </div>

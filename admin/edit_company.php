@@ -2,16 +2,25 @@
 <?php include("include\sidebar.php");?> 
 <?php 
     if($_SESSION['admin_email']){
-
-        $query="select * from company";
+         $query="select * from company where cid='{$_GET['uid']}'";
+        //  $query="select * from company left join admin_login ON company.cid=admin_login.id where cid='{$_GET['uid']}' AND admin_type=2";
         $result=mysqli_query($connection,$query);
         $raw=mysqli_num_rows($result);
         $data=mysqli_fetch_assoc($result);
+        
     }
     else{
     header("location:admin_login.php");
     }
 ?>
+<?php 
+     $query1="select * from admin_login where admin_type=2";
+     $result1=mysqli_query($connection,$query1);
+     $raw1=mysqli_num_rows($result);
+     $data1=mysqli_fetch_assoc($result);
+     print_r($data1);
+    ?>
+
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
         <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
@@ -37,6 +46,17 @@
       <?php echo $data['description'];?>
       </textarea>
     </div>
+    <!-- admin type data retriev without join table -->
+    <?php 
+    //  $query="select * from admin_login where admin_type=2";
+    //  $result1=mysqli_query($connection,$query);
+    //  $raw1=mysqli_num_rows($result);
+    //  $data1=mysqli_fetch_assoc($result);
+    ?>
+    <label for="pwd">Select Company Admin</label>
+    <select name="admin_type" id=""  class="form-control">
+                 <option value="<?php echo $data1['admin_email'];?>"><?php echo $data1['admin_email'];?></option>
+    </select>
   
   <button type="submit" class="btn btn-block btn-default" name="submit">Update</button>
 </form>
@@ -61,10 +81,10 @@
     <?php 
          if(isset($_POST['submit']))
          {
-           $uid=$_GET['uid'];
+           $cid=$_GET['uid'];
            $company=$_POST["companyname"];
            $description=$_POST["description"];
-           $query="update company set cname='$company',description='$description' where cid=$uid";
+           $query="update company set cname='$company',description='$description' where cid=$cid";
            $result=mysqli_query($connection,$query);
            if($result){
              echo "update success";

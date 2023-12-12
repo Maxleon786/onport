@@ -2,8 +2,8 @@
 <?php include("include\sidebar.php");?> 
 <?php 
   $query="select * from company";
+  // $query="select * from company right join admin_login ON company.cid=admin_login.id";
   $result=mysqli_query($connection,$query);
-  
 ?>
 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
         <nav aria-label="breadcrumb">
@@ -22,7 +22,9 @@
     <tr>
       <th scope="col">Company Name</th>
       <th scope="col">Description</th>
+      <th scope="col">Admin</th>
       <th scope="col" class="text-center">Action</th>
+    
     </tr>
   </thead>
   <tbody>
@@ -30,11 +32,13 @@
          if($raw>0){
             $sr=0;
           while($data=mysqli_fetch_assoc($result)) {
+           
     ?>
     <tr>
         
       <td><?php echo $data['cname'];?></td>
       <td><?php echo $data['description'];?></td>
+      <td><?php //echo $data['admin_email'];?></td>
       <td><a href="edit_company.php?uid=<?php echo $data['cid'];?>">edit</a></td>
       <td><a href="create_company.php?did=<?php echo $data['cid'];?>">delete</a></td>
      <?php }}; ?>
