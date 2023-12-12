@@ -121,7 +121,7 @@
 			              			<div class="col-md">
 			              				<div class="form-group">
 			              					<div class="form-field">
-								                <input type="submit" value="Search" class="form-control btn btn-primary" name="sbtn">
+								                <input type="submit" value="Search" class="form-control btn btn-primary" name="sbtn" id="search">
 								              </div>
 							              </div>
 			              			</div>
@@ -282,6 +282,7 @@
       //  $data=mysqli_fetch_assoc($result);
       //   $data['job_title'];
  // } ?>
+    <div id="all_jobs">
 		<section class="ftco-section bg-light">
 			<div class="container">
 				<div class="row justify-content-center mb-5 pb-3">
@@ -320,6 +321,7 @@
             </div>
           </div><!-- end -->
         <?php } ?>
+        </div>
           <div class="col-md-12 ftco-animate">
 						<div class="job-post-item bg-white p-4 d-block d-md-flex align-items-center">
 
