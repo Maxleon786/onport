@@ -1,20 +1,12 @@
 <?php include('connection.php');?>
 <?php 
-  if(isset($_POST['sbtn'])){
-    $keyword=$_POST['key'];
-    $category=$_POST['category'];
-    $query="select * from all_job LEFT JOIN company ON all_job.customer_email=company.admin WHERE job_title LIKE'%$keyword%' OR category='$category'";
-    $result=mysqli_query($connection,$query);
-    $raw=mysqli_num_rows($result);
-  //  $data=mysqli_fetch_assoc($result);
-  //   echo $data['job_title'];}
-//   while($data=mysqli_fetch_assoc($result)){
-//     print_r($data);
-//   }
-  }
-?>
+    $keyword=$_GET['key'];
+    $category=$_GET['category'];
+  ?>
 <?php 
- 
+   $query="select * from all_job LEFT JOIN company ON all_job.customer_email=company.admin WHERE job_title LIKE'%$keyword%' OR category='$category'";
+   $result=mysqli_query($connection,$query);
+   $raw=mysqli_num_rows($result);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -91,7 +83,7 @@
 			            <div class="tab-content p-4" id="v-pills-tabContent">
                     <!-- Search section -->
 			              <div class="tab-pane fade show active" id="v-pills-1" role="tabpanel" aria-labelledby="v-pills-nextgen-tab">
-			              	<form action="" class="search-job" method="POST">
+			              	<form action="search.php" class="search-job" method="GET">
 			              		<div class="row">
 			              			<div class="col-md">
 			              				<div class="form-group">
