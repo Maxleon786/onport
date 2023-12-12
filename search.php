@@ -1,11 +1,21 @@
 <?php include('connection.php');?>
 <?php 
-// all jobs dipsplay 
-    $query="select * from all_job LEFT JOIN company ON all_job.customer_email=company.admin";
+  if(isset($_POST['sbtn'])){
+    $keyword=$_POST['key'];
+    $category=$_POST['category'];
+    $query="select * from all_job LEFT JOIN company ON all_job.customer_email=company.admin WHERE job_title LIKE'%$keyword%' OR category='$category'";
     $result=mysqli_query($connection,$query);
     $raw=mysqli_num_rows($result);
+  //  $data=mysqli_fetch_assoc($result);
+  //   echo $data['job_title'];}
+//   while($data=mysqli_fetch_assoc($result)){
+//     print_r($data);
+//   }
+  }
 ?>
-        
+<?php 
+ 
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -81,7 +91,7 @@
 			            <div class="tab-content p-4" id="v-pills-tabContent">
                     <!-- Search section -->
 			              <div class="tab-pane fade show active" id="v-pills-1" role="tabpanel" aria-labelledby="v-pills-nextgen-tab">
-			              	<form action="search.php" class="search-job" method="GET">
+			              	<form action="" class="search-job" method="POST">
 			              		<div class="row">
 			              			<div class="col-md">
 			              				<div class="form-group">
@@ -126,9 +136,9 @@
 			              		</div>
 			              	</form>
 			              </div>
-                  
+
 			              <div class="tab-pane fade" id="v-pills-2" role="tabpanel" aria-labelledby="v-pills-performance-tab">
-			              	<form action="" class="search-job">
+			              	<form action="#" class="search-job">
 			              		<div class="row">
 			              			<div class="col-md">
 			              				<div class="form-group">
@@ -291,7 +301,7 @@
 				<div class="row">
           <!-- search data display -->
           <?php
-               while($data=mysqli_fetch_assoc($result)){?>
+              while($data=mysqli_fetch_assoc($result)){?>
 					<div class="col-md-12 ftco-animate">
 
             <div class="job-post-item bg-white p-4 d-block d-md-flex align-items-center">
