@@ -35,7 +35,6 @@
            
     ?>
     <tr>
-        
       <td><?php echo $data['cname'];?></td>
       <td><?php echo $data['description'];?></td>
       <td><?php //echo $data['admin_email'];?></td>
