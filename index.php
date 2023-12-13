@@ -321,7 +321,7 @@
               </div>
 
               <div class="ml-auto d-flex">
-                <a href="job-single.html" class="btn btn-primary py-2 mr-1">Apply Job</a>
+                <a href="blog_single.php" class="btn btn-primary py-2 mr-1">Apply Job</a>
                 <a href="#" class="btn btn-secondary rounded-circle btn-favorite d-flex align-items-center icon">
                 	<span class="icon-heart"></span>
                 </a>

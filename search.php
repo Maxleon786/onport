@@ -11,7 +11,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>JobPortal - Free Bootstrap 4 Template by Colorlib</title>
+    <title>single.php</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
@@ -51,9 +51,17 @@
 	          <li class="nav-item"><a href="about.php" class="nav-link">About</a></li>
 	          <li class="nav-item"><a href="blog.php" class="nav-link">Blog</a></li>
 	          <li class="nav-item"><a href="contact.php" class="nav-link">Contact</a></li>
-	          <li class="nav-item cta mr-md-2"><a href="new-post.php" class="nav-link">Login</a></li>
-	          <li class="nav-item cta cta-colored"><a href="job-post.php" class="nav-link">Logout</a></li>
-
+	         
+ <!-- login logout -->
+ <?php  if(isset($_SESSION['email'])){?>
+            <li class="nav-item cta mr-md-2"><a href="new-post.php" class="nav-link"><?php echo $_SESSION['email'];?></a></li>
+            <li class="nav-item cta cta-colored"><a href="logout.php" class="nav-link">Logout</a></li>
+         <?php  } 
+            else{?>
+              <li class="nav-item cta mr-md-2"><a href="login.php" class="nav-link">Login</a></li>
+           <?php }
+         ?>
+         
 	        </ul>
 	      </div>
 	    </div>
@@ -313,7 +321,7 @@
               </div>
 
               <div class="ml-auto d-flex">
-                <a href="job-single.html" class="btn btn-primary py-2 mr-1">Apply Job</a>
+                <a href="blog_single.php" class="btn btn-primary py-2 mr-1">Apply Job</a>
                 <a href="#" class="btn btn-secondary rounded-circle btn-favorite d-flex align-items-center icon">
                 	<span class="icon-heart"></span>
                 </a>

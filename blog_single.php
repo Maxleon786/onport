@@ -1,3 +1,12 @@
+<?php include('session.php');?>
+<?php 
+  if(isset($_SESSION['email'])){
+  
+  }
+else{
+  header("location:login.php");
+}
+;?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -41,9 +50,15 @@
 	          <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
 	          <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
 	          <li class="nav-item active"><a href="contact.html" class="nav-link">Contact</a></li>
-	          <li class="nav-item cta mr-md-2"><a href="new-post.html" class="nav-link">Post a Job</a></li>
-	          <li class="nav-item cta cta-colored"><a href="job-post.html" class="nav-link">Want a Job</a></li>
-
+	           <!-- login logout -->
+             <?php  if(isset($_SESSION['email'])){?>
+            <li class="nav-item cta mr-md-2"><a href="new-post.php" class="nav-link"><?php echo $_SESSION['email'];?></a></li>
+            <li class="nav-item cta cta-colored"><a href="logout.php" class="nav-link">Logout</a></li>
+         <?php  } 
+            else{?>
+              <li class="nav-item cta mr-md-2"><a href="login.php" class="nav-link">Login</a></li>
+           <?php }
+         ?>
 	        </ul>
 	      </div>
 	    </div>
